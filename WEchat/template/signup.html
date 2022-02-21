@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+</head>
+<body>
+<form action="/" method="post" class="container-fluid my-4" style="max-width: 50%;">{% csrf_token %}
+
+    <h3 class="text-break">SignUp form... WEchat</h3><br>
+<div class="form-control">
+  <label for="name">Username:</label>
+  <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="ie.Username">
+  <small id="helpId" class="form-text text-muted">this will display in your app*</small>
+</div>
+<div class="form-control">
+  <label for="email">Email:</label>
+  <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="ie.abc123@xyz.com">
+  <small id="emailHelpId" class="form-text text-muted">credential*</small>
+</div>
+<div class="form-control">
+  <label for="pass">Password:</label>
+  <input type="password" class="form-control" name="pass" id="pass">
+  <small id="passwordHelpId" class="form-text text-muted"><li>min 8 letters</li><li>containing one upper&lower case</li><li>one number</li><li>one special case letter</li></small>
+</div>
+<div class="form-group">
+  <label for="type">Select useage*</label>
+  <select class="form-control form-control-sm" name="type" id="type">
+    <option>Personal use</option>
+    <option>Business purposes</option>
+  </select>
+</div>
+<hr>
+<button type="submit" class="btn btn-warning">Submit</button>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
