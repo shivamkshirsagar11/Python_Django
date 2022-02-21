@@ -1,3 +1,3 @@
 <h4>
-Here i worl on my social chat app's prototype model
+Here i work on my social chat app's prototype model
 </h4>
