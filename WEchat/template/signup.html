@@ -27,7 +27,10 @@
 <div class="form-control">
   <label for="pass">Password:</label>
   <input type="password" class="form-control" name="pass" id="pass">
-  <small id="passwordHelpId" class="form-text text-muted"><li>min 8 letters</li><li>containing one upper&lower case</li><li>one number</li><li>one special case letter</li></small>
+  <small id="passwordHelpId" class="form-text text-muted">
+    <input type="checkbox" onclick="myFunction()"> Show Password
+    <li>min 8 letters</li><li>containing one upper & lower case</li><li>one number</li><li>one special case letter</li></small>
+    <input type="checkbox" onclick="validate()"> Validate password
 </div>
 <div class="form-group">
   <label for="type">Select useage*</label>
@@ -41,5 +44,37 @@
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+  <script>
+function myFunction() {
+  var x = document.getElementById("pass");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+function validate(){
+  var x = document.getElementById("pass");
+  var numbers = /[0-9]/g;
+  var upperCaseLetters = /[A-Z]/g;
+  var lowerCaseLetters = /[a-z]/g;
+  var special = /[@#$&*_-`]/;
+  if(x.value.length < 8){
+    window.alert("Password length is weak!")
+  }
+  else if(! x.value.match(upperCaseLetters)){
+    window.alert("No Uppercase letter detected!")
+  }
+  else if(! x.value.match(lowerCaseLetters)){
+    window.alert("No Lowercase letter detected!")
+  }
+  else if(! x.value.match(special)){
+    window.alert("No Special letter detected!")
+  }
+  else{
+    window.alert("Your password is good to go!")
+  }
+}
+</script>
 </body>
 </html>
