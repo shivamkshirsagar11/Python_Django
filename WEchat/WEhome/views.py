@@ -9,7 +9,7 @@ def login(request):
         ins_user = bp.objects.filter(email=email).first()
         if ins_user:
             if bcrypt.checkpw(password.encode('utf-8'), ins_user.password.encode('utf-8')):
-                return render(request, 'home.html',{"user":ins_user})
+                return render(request, 'home.html',{"name":ins_user.name})
             else:
                 return HttpResponse("Password is wrong!!!!!")
         else:
@@ -33,3 +33,7 @@ def img(request):
     if request.method == 'POST':
         pass
     return render(request, 'test.html')
+
+def home(request):
+    if request.method != 'POST':
+        return redirect('/')

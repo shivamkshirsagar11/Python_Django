@@ -15,7 +15,7 @@
 <ul class="messages">
     {% for message in messages %}
     <br><br>
-    <h3 {% if message.tags %} class="alert-success"{% endif %}>{{ message }}</h3>
+    <h4 {% if message.tags %} class="alert-success"{% endif %}>{{ message }}</h4>
     {% endfor %}
 </ul>
 {% endif %}
