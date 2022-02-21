@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+</head>
+<body>
+<img src="/static/images/WEchat-logo2.png" class="rounded mx-auto d-block" alt="this is our chat app logo" height="200px" width="200px" style="margin-top:50px">
+<form class="container alert-warning" style="max-width: 30%;border: 1px solid black; border-radius: 10px;margin-top: 80px;" method="post" action="/"> {% csrf_token %}
+<div class="form-group">
+  <label for="email">Email:</label>
+  <input type="email" name="email" id="email" class="form-control" aria-describedby="helpId" placeholder="Your registered email id" required>
+</div>
+<div class="form-group">
+  <label for="pass">Password:</label>
+  <input type="password" class="form-control" name="pass" id="pass" placeholder="Your password" required>
+  <input type="checkbox" onclick="myFunction()"> Show Password
+</div>
+<a class="text-black" href="signup">New to our website?</a><br><br>
+<button class="btn btn-dark">Submit</button>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<script>
+  function myFunction() {
+    var x = document.getElementById("pass");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+  </script>
+</body>
+</html>
