@@ -1,3 +1,4 @@
 from django.contrib import admin
+from WEhome.models import BaseProfile
 
-# Register your models here.
+admin.site.register(BaseProfile)

@@ -11,6 +11,14 @@
 <title>Title</title>
 </head>
 <body>
+  {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <br><br>
+    <h3 {% if message.tags %} class="alert-success"{% endif %}>{{ message }}</h3>
+    {% endfor %}
+</ul>
+{% endif %}
 <img src="/static/images/WEchat-logo2.png" class="rounded mx-auto d-block" alt="this is our chat app logo" height="200px" width="200px" style="margin-top:50px">
 <form class="container alert-warning" style="max-width: 30%;border: 1px solid black; border-radius: 10px;margin-top: 80px;" method="post" action="/"> {% csrf_token %}
 <div class="form-group">
