@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    /* Float four columns side by side */
+    .column {
+      float: left;
+      width: 70%;
+      height: 100%;
+      
+    }
+    
+    /* Remove extra left and right margins, due to padding */
+    .row {margin: 0 -5px;
+    margin-top:60px;
+margin-left: 150px;
+margin-right: 150px;}
+    
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+    }
+    
+    /* Style the counter cards */
+    .card-img {
+      /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+      text-align: center;
+      /* background-color: #f1f1f1; */
+    }
+    .card {
+      box-shadow: 5px 100px 70px 15px rgba(0, 0, 0, 0.2);
+     
+      background-color: #f1f1f1;
+    }
+    input#userImg {
+  display: inline-block;
+  width: 20%;
+  padding: 30px 0 0 0;
+  height: 1px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698394-icon-130-cloud-upload-512.png') center center no-repeat #fffefe;
+  border-radius: 20px;
+  background-size: 30px 30px;
+}
+    </style>
+</head>
+<body>
+    <nav class="nav justify-content-around">
+      <button class="nav-link active btn-dark" onclick="history.back()">Home</button>
+      <a class="nav-link active btn-danger" onclick="history.back()" href="/">logout</a>
+    </nav>
+    <form action="change" method="post" class="container accordion-collapse" style="max-width:80%;" enctype="multipart/form-data"> {% csrf_token %}
+    <div class="row">
+        <div class="column" style="margin-left: 38%;width:20%;">
+          <div class="card-img">
+              
+           <img src="/media/{{fullp.profileImg}}" alt="user profile" style="border-radius: 50px;
+           border:2px brown;" height="100px" width="100px" name="uimg"><br><hr>
+           Upload new picture<br><input type="file" name="userImg" id="userImg">
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column" style="margin-left:120px;">
+          <div class="card">
+            <div class="container" style="max-width: 80%;"><br>
+           <div class="form-group">
+             <label for="name">  Username</label>
+             <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" value="{{user.name}}">
+           </div>
+           
+           <div class="form-group">
+             <label for="email">  Email</label>
+             <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" value="{{user.email}}">
+           </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea class="form-control" name="address" id="address" rows="3">{{fullp.address}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" name="city" id="city" class="form-control" placeholder="Your city" aria-describedby="helpId" value="{{fullp.city}}">
+        </div>
+        <div class="form-group">
+            <label for="pin">Pin code</label>
+            <input type="text" name="pin" id="pin" class="form-control" placeholder="Your area code" aria-describedby="helpId" value="{{fullp.pincode}}">
+          </div>
+        <div class="form-group">
+          <label for="use">Useage</label>
+          <select class="form-control form-control-sm" name="use" id="use">
+            <option>Personal</option>
+            <option>Business</option>
+          </select>
+        </div>
+            <br>
+          </div>
+          </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-info">Save</button>
+</form>
+<br>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>

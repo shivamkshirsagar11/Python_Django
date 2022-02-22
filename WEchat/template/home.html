@@ -1,7 +1,7 @@
 <!doctype html>
 {% extends 'chat_base.html' %}
 {% block title %}Pare HOME{% endblock title %}
-{% block name %}{{name.name}}{% endblock name %}
+{% block name %}{{user.name}}{% endblock name %}
 {% block style %}
 @import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
 
@@ -77,19 +77,19 @@ body {
     <div class="card">
         <div class="upper"> <img src="https://i.imgur.com/Qtrsrk5.jpg" class="img-fluid" alt=""> </div>
         <div class="user text-center">
-            <div class="profile"> <img src="/static/images/WEchat-random-user.png" class="rounded-circle" width="80" alt=""> </div>
+            <div class="profile"> <img src="/media/{{fullp.profileImg}}" class="rounded-circle" width="80" alt=""> </div>
         </div>
         <div class="mt-5 text-center">
-            <h4 class="mb-0">{{name.name}}</h4> <span class="text-muted d-block mb-2">India</span> <button class="btn btn-primary btn-sm follow">Change profile</button>
+            <h4 class="mb-0">{{user.name}}</h4> <span class="text-muted d-block mb-2">India</span> <a class="btn btn-primary btn-sm follow" href="change">Change profile</a>
             <div class="d-flex justify-content-between align-items-center mt-4 px-4">
                 <div class="stats">
-                    <h6 class="mb-0">{{name.email}}</h6>
+                    <h6 class="mb-0">{{user.email}}</h6>
                 </div>
                 <div class="stats">
                     <h6 class="mb-0">🟢Online</h6>
                 </div>
                 <div class="stats">
-                    <h6 class="mb-0">{{name.usePurpose}}</h6>
+                    <h6 class="mb-0">{{user.usePurpose}}</h6>
                 </div>
             </div>
         </div>
