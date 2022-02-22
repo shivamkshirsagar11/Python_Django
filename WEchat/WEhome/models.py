@@ -7,3 +7,13 @@ class BaseProfile(m.Model):
     usePurpose = m.TextField()
     def __str__(self):
         return self.name
+
+class FullProfile(m.Model):
+    bpu = m.ForeignKey(BaseProfile,on_delete = m.CASCADE)
+    profileImg = m.ImageField(upload_to="user_profile",default="default.jpg")
+    address = m.TextField(max_length=255)
+    city = m.TextField(max_length=100)
+    pincode = m.IntegerField(max_length=6)
+    def __str__(self):
+        return self.bpu.name
+
