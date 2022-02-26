@@ -6,4 +6,5 @@ urlpatterns = [
     path('signup',v.signup,name="signup" ),
     path('home',v.home,name="homepage" ),
     path('change',v.change,name="change" ),
+    path('logout',v.logout,name="logout" ),
 ]

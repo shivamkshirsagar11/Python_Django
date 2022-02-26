@@ -77,7 +77,7 @@ margin-right: 150px;}
 <body>
     <nav class="nav justify-content-around">
       <button class="nav-link active btn-dark" onclick="history.back()">Home</button>
-      <a class="nav-link active btn-danger" onclick="history.back()" href="/">logout</a>
+      <a class="nav-link active btn-danger" onclick="history.back()" href="logout">logout</a>
     </nav>
     <form action="change" method="post" class="container accordion-collapse" style="max-width:80%;" enctype="multipart/form-data"> {% csrf_token %}
     <div class="row">
@@ -85,8 +85,8 @@ margin-right: 150px;}
           <div class="card-img">
               
            <img src="/media/{{fullp.profileImg}}" alt="user profile" style="border-radius: 50px;
-           border:2px brown;" height="100px" width="100px" name="uimg"><br><hr>
-           Upload new picture<br><input type="file" name="userImg" id="userImg">
+           border:2px brown;" height="100px" width="100px" name="uimg" id="photo"><br><hr>
+           Upload new picture<br><input type="file" name="userImg" id="userImg" onchange="readURL(this)">
           </div>
         </div>
     </div>
@@ -132,5 +132,18 @@ margin-right: 150px;}
 <br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            document.getElementById('photo').src =  e.target.result;
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 </body>
 </html>

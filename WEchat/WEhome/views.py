@@ -5,6 +5,9 @@ import bcrypt
 from django.core.cache import cache
 from django.http import HttpRequest
 from django.utils.cache import get_cache_key
+def logout(request):
+    request.session["email"] = "Unverified"
+    return redirect("/")
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -37,33 +40,35 @@ def signup(request):
     return render(request, 'signup.html')
 
 def change(request):
-    email =  request.session["email"]
-    ins_user = bp.objects.filter(email=email).first()
-    ins_user_full = fp.objects.filter(bpu_id = ins_user.id).first()
-    if ins_user:
-        if request.method == 'POST':
-            name = request.POST['name']
-            email = request.POST['email']
-            use = request.POST['use']
-            address = request.POST['address']
-            city = request.POST['city']
-            pincode = request.POST['pin']
-            image = request.FILES['userImg']
+    email =  request.session["email"] if request.session["email"] != "Unverified" else "Unverified"
+    if email == "Unverified" : return redirect("/")
+    else:
+        ins_user = bp.objects.filter(email=email).first()
+        ins_user_full = fp.objects.filter(bpu_id = ins_user.id).first()
+        if ins_user:
+            if request.method == 'POST':
+                name = request.POST['name']
+                email = request.POST['email']
+                use = request.POST['use']
+                address = request.POST['address']
+                city = request.POST['city']
+                pincode = request.POST['pin']
+                image = request.FILES['userImg']
 
-            ins_user.name = name
-            ins_user.email = email
-            ins_user.usePurpose = use
-            ins_user.save()
+                ins_user.name = name
+                ins_user.email = email
+                ins_user.usePurpose = use
+                ins_user.save()
 
-            ins_user_full.profileImg = image
-            ins_user_full.address = address
-            ins_user_full.city = city
-            ins_user_full.pincode = pincode
-            ins_user_full.save()
-            return render(request, 'home.html',{"user":ins_user,"fullp":ins_user_full})
-        return render(request, 'changeprofile.html',{"user":ins_user,"fullp":ins_user_full})
+                ins_user_full.profileImg = image
+                ins_user_full.address = address
+                ins_user_full.city = city
+                ins_user_full.pincode = pincode
+                ins_user_full.save()
+                return render(request, 'home.html',{"user":ins_user,"fullp":ins_user_full})
+            return render(request, 'changeprofile.html',{"user":ins_user,"fullp":ins_user_full})
 
 def home(request):
-    if request.method != 'POST':
+    if request.method != 'POST' and request.session["email"] != "Unverified":
         return render(request, 'login.html')
     else: return redirect('/')
